@@ -5,7 +5,6 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
 import jakarta.ws.rs.client.Entity;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import jakarta.ws.rs.client.Client;
@@ -44,7 +43,7 @@ public class RestclientApplication {
 		handleResponse(putResponse);
 
 		// DELETE request
-		WebTarget deleteTarget = client.target(BASE_URL + "/Pedro"); // Assuming the ID of the person to delete is 1
+		WebTarget deleteTarget = client.target(BASE_URL + "/Pedro");
 		Response deleteResponse = deleteTarget.request().delete();
 		handleResponse(deleteResponse);
 
@@ -62,13 +61,5 @@ public class RestclientApplication {
 			System.out.println("Error: " + response.getStatus());
 		}
 		response.close();
-	}
-
-	private static String encodeValue(String value) {
-		try {
-			return URLEncoder.encode(value, StandardCharsets.UTF_8.toString());
-		} catch (UnsupportedEncodingException e) {
-			throw new RuntimeException(e);
-		}
 	}
 }
